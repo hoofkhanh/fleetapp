@@ -9,7 +9,7 @@
   <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
   <link rel="shortcut icon" href="img/favicon.png">
 
-  <title>Profile | Creative - Bootstrap 3 Responsive Admin Template</title>
+  <title>Profile Of User</title>
 
   <!-- Bootstrap CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -264,18 +264,18 @@
           </li>
           <!-- alert notification end-->
           <!-- user login dropdown start-->
-          <li class="dropdown">
+              <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="profile-ava">
-                                <img alt="" src="img/avatar1_small.jpg">
+                                <img alt="" th:src="'/img/photos/' + ${#authentication.getPrincipal().getUsername()} + '.jpg'" style="height: 40px;width: 40px;">
                             </span>
-                            <span class="username">Jenifer Smith</span>
+                            <span class="username"  th:text="${#authentication.getPrincipal().getUsername()}" >Guest</span>
                             <b class="caret"></b>
                         </a>
             <ul class="dropdown-menu extended logout">
               <div class="log-arrow-up"></div>
               <li class="eborder-top">
-                <a href="#"><i class="icon_profile"></i> My Profile</a>
+                <a th:href="@{/profile}"><i class="icon_profile"></i> My Profile</a>
               </li>
               <li>
                 <a href="#"><i class="icon_mail_alt"></i> My Inbox</a>
@@ -305,12 +305,12 @@
     <!--header end-->
 
     <!--sidebar start-->
-    <aside>
+      <aside>
       <div id="sidebar" class="nav-collapse ">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu">
           <li class="active">
-            <a class="" href="index.html">
+            <a class="" th:href="@{/index}">
                           <i class="icon_house_alt"></i>
                           <span>Dashboard</span>
                       </a>
@@ -318,64 +318,77 @@
           <li class="sub-menu">
             <a href="javascript:;" class="">
                           <i class="icon_document_alt"></i>
-                          <span>Forms</span>
+                          <span>Vehicles</span>
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
             <ul class="sub">
-              <li><a class="" href="form_component.html">Form Elements</a></li>
-              <li><a class="" href="form_validation.html">Form Validation</a></li>
+              <li><a class="" th:href="@{/vehicles}">Vehicle Data</a></li>
+              <li><a class="" th:href="@{/vehiclemaintenances}">Maintenance</a></li>
+              <li><a class="" th:href="@{/vehiclemovements}">Movements</a></li>
+              <li><a class="" th:href="@{/vehiclehires}">Hires</a></li>
             </ul>
           </li>
           <li class="sub-menu">
             <a href="javascript:;" class="">
                           <i class="icon_desktop"></i>
-                          <span>UI Fitures</span>
+                          <span>Parameters</span>
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
             <ul class="sub">
-              <li><a class="" href="general.html">Components</a></li>
-              <li><a class="" href="buttons.html">Buttons</a></li>
-              <li><a class="" href="grids.html">Grids</a></li>
+              <li><a class="" th:href="@{/vehiclemakes}">Vehicle Make</a></li>
+              <li><a class="" th:href="@{/vehicletypes}">Vehicle Types</a></li>
+              <li><a class="" th:href="@{/vehiclemodels}">Vehicle Models</a></li>
+              <li><a class="" th:href="@{/vehiclestatuses}">Status Values</a></li>
             </ul>
           </li>
-          <li>
-            <a class="" href="widgets.html">
-                          <i class="icon_genius"></i>
-                          <span>Widgets</span>
+           <li class="sub-menu">
+            <a href="javascript:;" class="">
+                          <i class="icon_desktop"></i>
+                          <span>People</span>
+                          <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
+            <ul class="sub">
+              <li><a class="" th:href="@{/employees}">Employees</a></li>
+              <li><a class="" th:href="@{/clients}">Clients</a></li>
+              <li><a class="" th:href="@{/suppliers}">Suppliers</a></li>
+              <li><a class="" th:href="@{/contacts}">Contacts</a></li>
+              <li><a class="" th:href="@{/users}">Users</a></li>
+            </ul>
           </li>
-          <li>
-            <a class="" href="chart-chartjs.html">
-                          <i class="icon_piechart"></i>
-                          <span>Charts</span>
-
+          <li class="sub-menu">
+            <a href="javascript:;" class="">
+                          <i class="icon_desktop"></i>
+                          <span>HR Settings</span>
+                          <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
-
+            <ul class="sub">
+              <li><a class="" th:href="@{/jobtitles}">Job Titles</a></li>
+              <li><a class="" th:href="@{/employeetypes}">Employee Types</a></li>
+            </ul>
           </li>
 
           <li class="sub-menu">
             <a href="javascript:;" class="">
                           <i class="icon_table"></i>
-                          <span>Tables</span>
+                          <span>Accounts</span>
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
             <ul class="sub">
-              <li><a class="" href="basic_table.html">Basic Table</a></li>
+              <li><a class="" th:href="@{/invoices}">Invoice</a></li>
+              <li><a class="" th:href="@{/invoicestatuses}">Invoice Status Values</a></li>
             </ul>
           </li>
 
           <li class="sub-menu">
             <a href="javascript:;" class="">
                           <i class="icon_documents_alt"></i>
-                          <span>Pages</span>
+                          <span>Globals</span>
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
             <ul class="sub">
-              <li><a class="" href="profile.html">Profile</a></li>
-              <li><a class="" href="login.html"><span>Login Page</span></a></li>
-              <li><a class="" href="contact.html"><span>Contact Page</span></a></li>
-              <li><a class="" href="blank.html">Blank Page</a></li>
-              <li><a class="" href="404.html">404 Error</a></li>
+              <li><a class="" th:href="@{/countries}">Countries</a></li>
+              <li><a class="" th:href="@{/states}"><span>States</span></a></li>
+              <li><a class="" th:href="@{/locations}"><span>Locations</span></a></li>
             </ul>
           </li>
 
@@ -404,20 +417,26 @@
             <div class="profile-widget profile-widget-info">
               <div class="panel-body">
                 <div class="col-lg-2 col-sm-2">
-                  <h4>Jenifer Smith</h4>
+                  <h4>
+					  <span th:text="${#authentication.getPrincipal().getUsername()}"></span>
+				  </h4>
                   <div class="follow-ava">
-                    <img src="img/profile-widget-avatar.jpg" alt="">
+                    <img th:src="'img/photos/' + ${#authentication.getPrincipal().getUsername()} + '.jpg'"  alt="" style="width:50px; height:50px;" >
                   </div>
-                  <h6>Administrator</h6>
+                  <h6>USER</h6>
                 </div>
                 <div class="col-lg-4 col-sm-4 follow-info">
-                  <p>Hello I’m Jenifer Smith, a leading expert in interactive and creative design.</p>
-                  <p>@jenifersmith</p>
-                  <p><i class="fa fa-twitter">jenifertweet</i></p>
+                  <p>Hello I’m <span th:text="${#authentication.getPrincipal().getUsername()}"></span>, a leading expert in interactive and creative design.</p>
+                  <p>@<span th:text="${#authentication.getPrincipal().getUsername()}"></p>
+                  <p><i class="fa fa-twitter"></i><span th:text="${#authentication.getPrincipal().getUsername()}"></span></p>
                   <h6>
-                                    <span><i class="icon_clock_alt"></i>11:05 AM</span>
-                                    <span><i class="icon_calendar"></i>25.10.13</span>
-                                    <span><i class="icon_pin_alt"></i>NY</span>
+                                    <span><i class="icon_clock_alt"></i>
+                                    	<span th:text="${#dates.format(#dates.createNow(), 'HH:mm a')}"></span>
+                                    </span>
+                                    <span><i class="icon_calendar"></i>
+                                    	<span th:text="${#dates.format(#dates.createNow(), 'dd MMM yyyy')}"></span>
+                                    </span>
+                                    <span><i class="icon_pin_alt"></i>VN</span>
                                 </h6>
                 </div>
                 <div class="col-lg-2 col-sm-6 follow-info weather-category">

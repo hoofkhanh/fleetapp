@@ -265,18 +265,18 @@
           </li>
           <!-- alert notification end-->
           <!-- user login dropdown start-->
-          <li class="dropdown">
+             <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="profile-ava">
-                                <img alt="" src="img/avatar1_small.jpg">
+                                <img alt="" th:src="'/img/photos/' + ${#authentication.getPrincipal().getUsername()} + '.jpg'" style="height: 40px;width: 40px;">
                             </span>
-                            <span class="username">Jenifer Smith</span>
+                            <span class="username"  th:text="${#authentication.getPrincipal().getUsername()}" >Guest</span>
                             <b class="caret"></b>
                         </a>
             <ul class="dropdown-menu extended logout">
               <div class="log-arrow-up"></div>
               <li class="eborder-top">
-                <a href="#"><i class="icon_profile"></i> My Profile</a>
+                <a th:href="@{/profile}"><i class="icon_profile"></i> My Profile</a>
               </li>
               <li>
                 <a href="#"><i class="icon_mail_alt"></i> My Inbox</a>
@@ -422,6 +422,7 @@
                 <thead>
                   <tr>
 					<th><i class="icon_profile"></i> PHOTO</th>
+					<th><i class="icon_profile"></i> UserName</th>
                     <th><i class="icon_profile"></i> FULL NAME</th>
                     <th><i class="fa fa-calendar" aria-hidden="true"></i> HIRE DATE</th>
                     <th><i class="icon_mail_alt"></i> EMAIL</th>
@@ -433,9 +434,12 @@
                 <tbody>
                   <tr th:each="employee:${employeeList}">
 					<td>
-						<a id="photoButton" th:href="@{'img/photos/' + ${employee.id} + '.jpg'}">
-							<img th:src="@{'img/photos/' + ${employee.id} + '.jpg'}" width="50px" height="50px">
+						<a id="photoButton" th:href="@{'img/photos/' + ${employee.username} + '.jpg'}">
+							<img th:src="@{'img/photos/' + ${employee.username} + '.jpg'}" width="50px" height="50px">
 						</a>
+					</td>
+					<td>
+						<a th:text="${employee.username} ?: 'Check'" th:href="@{/employees/assignUsername(id = ${employee.id})}" ></a>
 					</td>
                     <td th:text="${employee.fullname}"></td>
                     <td th:text="${employee.hireDate}" id="subDate"></td>
@@ -791,7 +795,7 @@
 				          </div>
 					</td>
 				</tr>
-	  
+	  <input type="hidden" id="usernameEdit" name="username">
           		<tr>
 					  <td colspan="2">
 						   <div class="form-group">
@@ -799,6 +803,7 @@
 				         </div>
 					  </td>
 				 </tr>
+				 
          </table>
         </form>
       </div>
@@ -1022,6 +1027,7 @@
     </div>
   </div>
 </div>
+
 
   <!-- javascripts -->
   <script src="js/jquery.js"></script>

@@ -6,13 +6,14 @@ function increaseDate(date){
 }
 
 $('document').ready(function() {
-	$('.table #editButton').on('click', function(event) {
+	$('.table #editButton ').on('click', function(event) {
 		event.preventDefault(); // Ngăn chặn khi bấm vào button thì nó nhảy qua bên url đó và làm
 		var href = $(this).attr('href');// lấy giá trị trong href bên nút button edit
 
 		/* bắt đầu vào url getMapping này bên controller làm */
 		/* khi $.get(href) làm xong rồi thi nó sẽ làm callback => function(..) */
 		$.get(href, function(employee, status) {
+			$('#usernameEdit').val(employee.username);
 			$('#idEdit').val(employee.id);
 			$('#titleEdit').val(employee.title);
 			$('#initialsEdit').val(employee.initials);

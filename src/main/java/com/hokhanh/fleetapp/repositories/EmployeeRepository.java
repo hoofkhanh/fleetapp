@@ -7,4 +7,5 @@ import com.hokhanh.fleetapp.models.Employee;
 
 public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 
+	public Employee findByUsername(String username);
 }

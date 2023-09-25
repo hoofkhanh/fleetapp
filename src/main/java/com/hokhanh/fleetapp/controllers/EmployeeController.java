@@ -87,5 +87,11 @@ public class EmployeeController {
 		this.employeeService.deleteEmployeeById(id);
 		return "redirect:/employees";
 	}
+	
+	@GetMapping(value = "/employees/assignUsername")
+	public String assignUsername(Integer id) {
+		this.employeeService.assignUsername(id);
+		return "redirect:/employees";
+	}
 
 }
