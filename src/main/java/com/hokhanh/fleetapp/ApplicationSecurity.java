@@ -28,6 +28,7 @@ public class ApplicationSecurity     {
             .requestMatchers("/login", "/resources/**", "/css/**", "/fonts/**", "/img/**").permitAll()
             .requestMatchers("/register", "/resources/**", "/css/**", "/fonts/**", "/img/**", "/js/**").permitAll()
             .requestMatchers("/users/addNew").permitAll()
+            .requestMatchers("/security/user/edit/**").hasAuthority("ADMIN")
             .anyRequest().authenticated()
         )
         .formLogin(form -> form
@@ -38,7 +39,8 @@ public class ApplicationSecurity     {
         .logout(logout -> logout.invalidateHttpSession(true).clearAuthentication(true)
         						.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
         						.logoutSuccessUrl("/login")
-        						.permitAll());
+        						.permitAll())
+        .exceptionHandling(handling -> handling.accessDeniedPage("/accessDenied"));
 		 
 		    return http.build();
 	}

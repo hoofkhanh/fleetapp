@@ -1,7 +1,9 @@
 package com.hokhanh.fleetapp.models;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -21,7 +23,13 @@ public class UserPrincipal implements UserDetails {
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return Collections.singleton(new SimpleGrantedAuthority("USER"));
+//		return Collections.singleton(new SimpleGrantedAuthority("USER"));
+		List<GrantedAuthority> authorities = new ArrayList<>();
+		for (Role role : user.getRoles()) {
+			authorities.add(new SimpleGrantedAuthority(role.getDescription()));
+		}
+		
+		return authorities;
 	}
 
 	@Override

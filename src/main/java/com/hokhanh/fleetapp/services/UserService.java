@@ -1,5 +1,7 @@
 package com.hokhanh.fleetapp.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -36,6 +38,14 @@ public class UserService implements UserDetailsService{
 	public void save(User user) {
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 		this.userRepository.save(user);
+	}
+	
+	public User findById(Integer id) {
+		return this.userRepository.findById(id).orElse(null);
+	}
+	
+	public List<User>getAll() {
+		return this.userRepository.findAll();
 	}
 
 }
